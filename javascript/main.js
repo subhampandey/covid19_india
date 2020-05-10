@@ -18,13 +18,29 @@ statecode: "MH"
 statenotes: "[05-M*/
 $.ajax(settings).done(function (response) {
     var js = response;
+    var body = document.getElementById("body");
+    for (state of Object.values(js.statewise)) {
+        var tr = document.createElement("tr");
+            tr.innerHTML = `
+        
+        
+            <td>${state.state}</td>
+            <td>${state.confirmed}</td>
+            <td>${state.active}</td>
+            <td>${state.deaths}</td>
+            <td>${state.recovered}</td>
+        
+
+    `;
+        body.appendChild(tr);
+        
+    }
     console.log(js);
       function loop(data) {
           var state;
           for (state of Object.values(js.statewise))
           {     
               if (state.state === data) {
-                
                   return `<strong>State:${state.state}</strong><br><strong>Confirmed:${state.confirmed}</strong><br><strong>Active:${state.active}</strong><br><strong>Deaths:${state.deaths}</strong><br><strong>Recovered:${state.recovered}</strong>`;
               }
           }

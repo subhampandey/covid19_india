@@ -9,28 +9,71 @@
     </script>
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css" rel="stylesheet" />
     <style>
-        .in{
-            display:block;
-            
+        #emp {
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            height: 100%;
         }
+            #emp tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #emp tr:hover {
+                background-color: #ddd;
+            }
+
+            #emp th {
+                padding-top: 12px;
+                padding-bottom: 12px;
+                text-align: left;
+                background-color: #4CAF50;
+                color: white;
+            }
+
 
         #map {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 100%;
+            position:absolute;
+            float:left;
+            width: 50%;
+            height:100%;
+           
         }
         #print{
-            left:500px;
-            width:100%; 
+           position:relative;
+            float:right;
+            width:49%; 
+            height:inherit;
+            overflow:scroll;
+            
 
+        }
+        .flex-contianer {
+            position:absolute;
+            height:100%;
+            width:100%;
         }
     </style>
 </head>
 <body><div class="flex-contianer">
-    <div id="map" class="in"></div>
-    <div id="print" class="in" style="background-color:aqua"><h1>HELLO WORLD!</h1></div></div>
+    <div id="map" ></div>
+    <div id="print"  >
+        <table id="emp">
+            <tr>
+                <th>State</th>
+                <th>Confirmed</th>
+                <th>Active</th>
+                <th>Deaths</th>
+                <th>Recovered</th>
+
+            </tr>
+            <tbody id="body"></tbody>
+            <tr id="p1"></tr>
+        </table>
+        
+        </div></div>
     <script src="javascript/main.js"></script>
+    
 
 </body>
 </html>
