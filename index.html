@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Display a map</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js">
+    </script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.9.1/mapbox-gl.css" rel="stylesheet" />
+    <style>
+        .in{
+            display:block;
+            
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        #print{
+            left:500px;
+            width:100%; 
+
+        }
+    </style>
+</head>
+<body><div class="flex-contianer">
+    <div id="map" class="in"></div>
+    <div id="print" class="in" style="background-color:aqua"><h1>HELLO WORLD!</h1></div></div>
+    <script src="javascript/main.js"></script>
+
+</body>
+</html>
