@@ -1,105 +1,105 @@
+var app = angular.module('App', []);
+
+app.controller('appCtrl', function ($scope, $http) {
 
 
-var settings = {
-    "url": "https://api.covid19india.org/data.json",
-    "method": "GET",
-    "timeout": 0,
-};/*
-active: "15649"
-confirmed: "20228"
-deaths: "779"
-deltaconfirmed: "0"
-deltadeaths: "0"
-deltarecovered: "0"
-lastupdatedtime: "09/05/2020 21:34:08"
-recovered: "3800"
-state: "Maharashtra"
-statecode: "MH"
-statenotes: "[05-M*/
-$.ajax(settings).done(function (response) {
-    var js = response;
-    var body = document.getElementById("body");
-    for (state of Object.values(js.statewise)) {
-        var tr = document.createElement("tr");
-            tr.innerHTML = `
-        
-        
-            <td>${state.state}</td>
-            <td>${state.confirmed}</td>
-            <td>${state.active}</td>
-            <td>${state.deaths}</td>
-            <td>${state.recovered}</td>
-        
+    $scope.header = "India";
+    $http({
+        method: "GET",
+        url: "https://api.covid19india.org/data.json"
+    }).then(function getData(response) {
+        // console.log(response);
+        stats = response.data.statewise;
 
-    `;
-        body.appendChild(tr);
-        
-    }
-    console.log(js);
-      function loop(data) {
-          var state;
-          for (state of Object.values(js.statewise))
-          {     
-              if (state.state === data) {
-                  return `<strong>State:${state.state}</strong><br><strong>Confirmed:${state.confirmed}</strong><br><strong>Active:${state.active}</strong><br><strong>Deaths:${state.deaths}</strong><br><strong>Recovered:${state.recovered}</strong>`;
-              }
-          }
-        
-    }
-   // loop('features');
-    mapboxgl.accessToken = 'pk.eyJ1Ijoic3ViaGFtcGFuZGV5IiwiYSI6ImNqcm9sNDZodjB2NHU0ZnVwZHFud3JmN3MifQ.A_Qm2ugoPINVOruCMZWsbA';
-   
-    var map = new mapboxgl.Map({
-        container: 'map', // container id
-        style: 'mapbox://styles/mapbox/streets-v10', // stylesheet location
-        center: [20, 78], // starting position [lng, lat]
-        maxBounds: [68, 6, 97, 37],
-    });
-    map.boxZoom.disable();
-    map.doubleClickZoom.disable();
-   // var marker = new mapboxgl.Marker().setLngLat([88.3630371, 22.5626297]).addTo(map);
-    var hoveredStateId = null;
-    map.on('load', function () {
-        // Add a source for the state polygons.
-        map.addSource('states', {
-            'type': 'geojson',
-            'data':
-                'https://raw.githubusercontent.com/geohacker/india/master/state/india_state.geojson'
-        });
-
-        // Add a layer showing the state polygons.
-        map.addLayer({
-            'id': 'states-layer',
-            'type': 'fill',
-            'source': 'states',
-            'paint': {
-                'fill-color': 'rgba(200, 100, 240, 0.1)',
-                'fill-outline-color': 'rgba(200, 100, 240, 1)'
+        funDefault($scope, stats);
+        $scope.funmappng = function ($event) {
+            var cls = event.target.attributes[0].value;
+            chnge(cls, stats);
+        }
+        $scope.myfndefault = function () {
+            funDefault($scope, stats);
+        }
+        $scope.myfn = function ($event) {
+            // console.log(event);
+            // console.log(event.target.attributes[0].value);
+            for (var stat of stats) {
+                var s = "IN-" + stat.statecode;
+                // console.log(s);
+                if (event.target.attributes[0].value === s) {
+                    $scope.cnfrm = stat.confirmed;
+                    $scope.active = stat.active;
+                    $scope.recover = stat.recovered;
+                    $scope.death = stat.deaths;
+                    $scope.stateName = stat.state;
+                    $scope.updatedtime = stat.lastupdatedtime;
+                }
             }
-        });
-
-        // When a click event occurs on a feature in the states layer, open a popup at the
-        // location of the click, with description HTML from its properties.
-        map.on('click', 'states-layer', function (e) {
-           
-            new mapboxgl.Popup()
-                .setLngLat(e.lngLat)
-                .setHTML(loop(e.features[0].properties.NAME_1))//e.features[0].properties.name
-                .addTo(map);
-        });
-
-        // Change the cursor to a pointer when the mouse is over the states layer.
-        map.on('mouseenter', 'states-layer', function () {
-            map.getCanvas().style.cursor = 'pointer';
-        });
-
-        // Change it back to a pointer when it leaves.
-        map.on('mouseleave', 'states-layer', function () {
-            map.getCanvas().style.cursor = '';
-        });
+        }
+    }, function error(response) {
+        console.log(response.statusText);
     });
+
 });
 
 
 
 
+function funDefault($scope, stats) {
+    $scope.cnfrm = stats[0].confirmed;
+    $scope.active = stats[0].active;
+    $scope.recover = stats[0].recovered;
+    $scope.death = stats[0].deaths;
+    $scope.stateName = stats[0].state;
+    $scope.updatedtime = stats[0].lastupdatedtime;
+    document.getElementById("st").style.color = "red";
+    chnge("stats-red", stats);
+}
+function chnge(cls, stats) {
+    var maxcnfm = 25000;
+    var maxactv = 20000;
+    var maxrcvr = 6000;
+    var maxdths = 1000;
+    for (var stat of stats) {
+        var s = "IN-" + stat.statecode;
+        var element = document.getElementById(s);
+        var opc = parseInt(stat.confirmed) / maxcnfm;
+
+        if (element != null) {
+            if (cls === "stats-red") {
+                element.style.fill = "red";
+            }
+            else if (cls === "stats-green") {
+                element.style.fill = "green";
+            }
+            else if (cls === "stats-begun") {
+                element.style.fill = "rgb(151, 149, 160)";
+            }
+            else if (cls === "stats-blue") {
+                element.style.fill = "blue";
+            }
+
+            element.style.fillOpacity = opc;
+        }
+
+    }
+}
+function click(evt) {
+    var title = document.getElementById(evt);
+    title.style.fill = "rgba(225, 48, 40)";
+    title.style.fillOpacity = "0.18";
+    console.log(evt);
+
+
+};
+function toggle_mode(evt) {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+
+    var sg = document.getElementById("svg2");
+    for (var i = 2; i < sg.children.length; i++) {
+        sg.children[i].classList.toggle("dark-mode")
+    }
+
+    // console.log(sg.children);
+
+}
