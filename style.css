@@ -8,6 +8,18 @@
     color: white;
     fill: rgb(22, 22, 37);
 }
+.dark-blue{
+    color:rgb(0, 38, 255);
+}
+.dark-green {
+    color: rgb(76, 255, 0);
+}
+.dark-begun {
+    color: rgb(250, 0, 255);
+}
+.dark-red {
+    color: rgb(0, 123, 254);
+}
 
 .container{
     background-color:inherit;
@@ -33,7 +45,7 @@
     background-color: inherit;
     color: whitesmoke;
     text-align: center;
-    height: 70px;
+    height: 90px;
     justify-content: center;
     align-items: flex-end;
 }
@@ -47,8 +59,8 @@
 div.stats-blue {
     display: inline-block;
     opacity: 1;
-    height: 50px;
-    width: 80px;
+    height: 70px;
+    width: 90px;
     background-color: rgba(0, 16, 255, 0.16);
     color: rgb(0, 123, 254);
     overflow: hidden;
@@ -61,10 +73,10 @@ div.stats-green {
     display: inline-block;
     vertical-align: bottom;
     opacity: 1;
-    height: 50px;
-    width: 80px;
+    height: 70px;
+    width: 90px;
     background-color: rgba(7, 238, 40, 0.21);
-    color: rgb(40, 166, 69);
+    color: rgb(76, 255, 0);
     overflow: hidden;
     border-style: hidden;
     border-radius: 5px;
@@ -74,8 +86,8 @@ div.stats-begun {
     display: inline-block;
     vertical-align: bottom;
     opacity: 1;
-    height: 50px;
-    width: 80px;
+    height: 70px;
+    width: 90px;
     background-color: rgba(142, 133, 151, 0.18);
     color: rgb(151, 149, 160);
     overflow: hidden;
@@ -86,8 +98,8 @@ div.stats-begun {
 div.stats-red {
     display: inline-block;
     opacity: 1;
-    height: 50px;
-    width: 80px;
+    height: 70px;
+    width: 90px;
     background-color: rgba(254, 7, 58, 0.17);
     color: rgb(254, 7, 58);
     border-style: hidden;
@@ -131,4 +143,7 @@ div.stats-red {
 .stats-blue:hover, .stats-begun:hover, .stats-green:hover, .stats-red:hover {
     margin-bottom: 10px;
     padding-bottom: 5px;
+}
+.stat-focus{
+    stroke:red;
 }

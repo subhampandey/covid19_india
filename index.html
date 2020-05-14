@@ -18,24 +18,27 @@
         </div>
         <div class="map-stats">
             <div class="stats-red" id="cnf" ng-click="funmappng($event)">
-                <span class="h">cnfirm</span><br />
-                <span class="h">{{cnfrm}}</span>
+                <span class="h">confirmed</span><br />
+                <span class="h">{{cnfrm}}</span><br />
+                <span class="" style="font-size:small">[+{{deltacnfrm}}]</span>
             </div>
             <div class="stats-blue" id="act" ng-click="funmappng($event)">
                 <span class="h">active</span><br />
                 <span class="h">{{active}}</span>
             </div>
             <div class="stats-green" id="rcv" ng-click="funmappng($event)">
-                <span class="h">recover</span><br />
-                <span class="h">{{recover}}</span>
+                <span class="h">recovered</span><br />
+                <span class="h">{{recover}}</span><br />
+                <span class="" style="font-size:small">[+{{deltarcvr}}]</span>
             </div>
             <div class="stats-begun" id="dth" ng-click="funmappng($event)">
-                <span class="h">deaths</span><br />
-                <span class="h">{{death}}</span>
+                <span class="h">deceased</span><br />
+                <span class="h">{{death}}</span><br />
+                <span class="" style="font-size:small">[+{{deltadths}}]</span>
             </div>
         </div>
         <div class="state">
-            <div id="st" style="float:left">
+            <div id="st" style="float:left;color:red">
                 {{stateName}}
             </div>
             <div style="float:right;color:rgb(76, 255, 0)">
