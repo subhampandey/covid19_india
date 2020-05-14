@@ -9,6 +9,11 @@
     fill: rgb(22, 22, 37);
 }
 
+.container{
+    background-color:inherit;
+    color:inherit;
+    
+}
 .header {
     background-color: inherit;
     color: inherit;
