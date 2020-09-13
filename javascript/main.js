@@ -55,10 +55,10 @@ function funDefault($scope, stats) {
     chngOPC(stats);
 }
 function chngOPC(stats) {
-    var maxcnfm = 25000;
-    var maxactv = 20000;
-    var maxrcvr = 6000;
-    var maxdths = 1000;
+    var maxcnfm = 2500000;
+    var maxactv = 2000000;
+    var maxrcvr = 600000;
+    var maxdths = 100000;
     for (var stat of stats) {
         var s = "IN-" + stat.statecode;
         var element = document.getElementById(s);
